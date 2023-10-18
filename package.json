@@ -37,11 +37,13 @@
 		}
 	},
 	"scripts": {
-		"vscode:prepublish": "npm run compile",
+		"vscode:prepublish": "npm run build",
 		"compile": "tsc -p ./",
 		"lint": "eslint \"src/**/*.ts\"",
-		"watch": "tsc -watch -p ./",
-		"dev": "father dev"
+		"dev": "tsc -watch -p ./",
+		"watch": "father dev",
+		"build": "father build",
+		"package": "vsce package"
 	},
 	"devDependencies": {
 		"@types/babel__core": "^7.20.2",

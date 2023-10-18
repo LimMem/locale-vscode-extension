@@ -30,9 +30,6 @@
         init() {
             this.subscription();
             this.bindEvent();
-
-
-
         },
 
         bindEvent() {
@@ -44,7 +41,7 @@
                 this.excludeInput = document.querySelector('#excludePath');
                 this.$exportInput = $('#exportPath');
                 containerEle.innerHTML = '正在解析文件...'
-
+                $('#statistics').html('');
                 vscode.postMessage({
                     command: 'search',
                     content: {
@@ -63,7 +60,6 @@
                 const index = $(this);
                 const fileIndex = $(index.parent().parent()).index();
                 const rowIndex = index.index();
-                console.log(fileIndex, rowIndex);
                 vscode.postMessage({
                     command: 'click',
                     content: {

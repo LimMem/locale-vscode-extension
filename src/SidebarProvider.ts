@@ -5,8 +5,7 @@ import { join, dirname, basename } from "path";
 import { parseFiles } from "./utils/parseFiles";
 import { existsSync, mkdirSync, writeFileSync } from "fs";
 
-const defaultIngore = ['node_modules', '__tests__', 'es', 'lib', 'umd', 'scripts', 'public', '*.d.ts'];
-
+const defaultIngore = ['node_modules', '__tests__', 'es', 'lib', 'umd', 'scripts', 'public', '*.d.ts', 'dist', 'build'];
 
 export class SidebarProvider implements vscode.WebviewViewProvider {
   rootPath: string | undefined;
@@ -16,7 +15,6 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
   constructor(private readonly _extensionUri: vscode.Uri, context: vscode.ExtensionContext) {
     this.rootPath = (vscode.workspace.workspaceFolders && (vscode.workspace.workspaceFolders.length > 0))
       ? vscode.workspace.workspaceFolders[0].uri.fsPath : undefined;
-
   }
 
   private configWebview(webview: vscode.Webview) {
@@ -34,7 +32,7 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
         if (this.rootPath) {
           
           let pattern = include.split(',').map((p: string) => p.trim()).filter(Boolean).map(p => {
-            return join(p, '/**/*.{ts,tsx,js,jsx}');
+            return join('/', p, '/**/*.{ts,tsx,js,jsx}');
           })
 
           if (pattern.length === 0) {
@@ -42,8 +40,9 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
           }
 
           try {
-            const files = globSync(pattern, { cwd: this.rootPath, root: this.rootPath, ignore: exclude.split(',').map(f => f.trim()).filter(Boolean).concat(defaultIngore).map(it => it.indexOf('.') > -1 ? `**/${it}` : `**/${it}/**`) });
+            const files = globSync(pattern, { root: this.rootPath, ignore: exclude.split(',').map(f => f.trim()).filter(Boolean).concat(defaultIngore).map(it => it.indexOf('.') > -1 ? `**/${it}` : `**/${it}/**`) });
 
+            console.log(files);
             const result = parseFiles(files);
             const target = {
               result,
