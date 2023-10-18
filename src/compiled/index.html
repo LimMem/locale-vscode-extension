@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="./index.css" rel="stylesheet">
+</head>
+<body>
+  <div id="root">
+    <div class="form-input">
+      <div class='label'>包含的文件</div>
+      <input id="includePath" placeholder="请输入" />
+    </div>
+    <div class="form-input">
+      <div class='label'>排除的文件</div>
+      <input id="excludePath" placeholder="请输入" />
+    </div>
+    <div id="search">开始搜索</div>
+    <div id="main">
+     <div id="container"></div>
+     </div>
+    </div>
+  </div>
+  <script >
+
+    window.isVscode = false;
+
+  </script>
+  <script src="./jquery.js"></script>
+  <script src="./index.js"></script>
+</body>
+</html>

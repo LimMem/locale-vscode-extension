@@ -1,0 +1,63 @@
+{
+	"name": "local-plugin",
+	"displayName": "local-plugin",
+	"description": "local-plugin for VS Code",
+	"version": "0.0.1",
+	"publisher": "local-plugin",
+	"engines": {
+		"vscode": "^1.74.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/LimMem/locale-vscode-extension"
+	},
+	"activationEvents": [],
+	"main": "./out/extension.js",
+	"contributes": {
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "locale-plugin",
+					"title": "Package Explorer",
+					"icon": "media/dep.svg"
+				}
+			]
+		},
+		"views": {
+			"locale-plugin": [
+				{
+					"id": "locale-plugin-view",
+					"name": "localView",
+					"type": "webview"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint \"src/**/*.ts\"",
+		"watch": "tsc -watch -p ./",
+		"dev": "father dev"
+	},
+	"devDependencies": {
+		"@types/babel__core": "^7.20.2",
+		"@types/node": "^16.18.34",
+		"@types/vscode": "^1.73.0",
+		"@typescript-eslint/eslint-plugin": "^6.7.0",
+		"@typescript-eslint/parser": "^6.7.0",
+		"eslint": "^8.26.0",
+		"father": "^4.3.5",
+		"typescript": "^5.2.2"
+	},
+	"dependencies": {
+		"@babel/core": "^7.23.2",
+		"@babel/preset-react": "^7.22.15",
+		"@babel/preset-typescript": "^7.23.2",
+		"concat-map": "^0.0.2",
+		"glob": "^10.3.10"
+	}
+}
